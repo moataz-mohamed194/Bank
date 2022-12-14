@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "695713165147",
+    "firebase_url": "https://bank-c9346-default-rtdb.firebaseio.com",
+    "project_id": "bank-c9346",
+    "storage_bucket": "bank-c9346.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:695713165147:android:fd810348bd8668c65b747e",
+        "android_client_info": {
+          "package_name": "com.example.bank"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "695713165147-6696g7q0ifd3cml3km5u3m9pdtg12qut.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-uoe9L31BQMgpWL3ND6e11b5sgiazrEk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "695713165147-6696g7q0ifd3cml3km5u3m9pdtg12qut.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "695713165147-rjclofc327pm4hpbq5t3g63m9nvp3l1v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.bank"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
