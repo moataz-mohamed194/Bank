@@ -43,6 +43,11 @@ dependencies:
   get_it: ^7.2.0
   firebase_database: ^10.0.7
   flutter_screen_lock: ^9.0.0+1
+  google_mobile_ads: ^2.3.0
+#  riverpod: ^2.1.1
+#  firebase_admob: ^0.11.2
+#  flutter_native_admob: ^2.1.0+3
+
 
 dev_dependencies:
   flutter_test:

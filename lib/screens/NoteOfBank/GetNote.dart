@@ -1,8 +1,10 @@
 
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/widgets/NoteDisplay.dart';
+import '../../domain/AdsProvider.dart';
 import '../../domain/NoteDateProvider.dart';
 import 'AddNote.dart';
 
@@ -53,6 +55,7 @@ class _GetNote extends State<GetNote>{
 
   Widget bodyContainer(BuildContext context){
     final dataProvider = Provider.of<NoteDateProvider>(context);
+    final dataAdsProvider = Provider.of<AdsProvider>(context);
 
     return RefreshIndicator(
         onRefresh: () => _onRefresh(context),
@@ -60,11 +63,19 @@ class _GetNote extends State<GetNote>{
             itemCount: dataProvider.note.length,
             itemBuilder: (_, int position) {
               var data = dataProvider.note;
-              return NoteDisplay(
-                  note: data.values.elementAt(position)['note'].toString(),
-                  id:data.keys.elementAt(position).toString(),
-                  number: (position + 1).toString(),
-                  name:widget.bank
+              return Column(
+                children: [
+                  position%2==0?Container(
+                    height: 80,
+                    child: AdWidget(ad: dataAdsProvider.getAd()),
+                  ):Container(),
+                  NoteDisplay(
+                      note: data.values.elementAt(position)['note'].toString(),
+                      id:data.keys.elementAt(position).toString(),
+                      number: (position + 1).toString(),
+                      name:widget.bank
+                  ),
+                ],
               );
             }
         ));

@@ -5,6 +5,7 @@ import '../data/Bank.dart';
 class GetDataOfBank extends ChangeNotifier{
   List _banksList = [];
   Future<void> getListOfBankNames() async{
+    print('==${await Bank().fetchBankNames()}');
     _banksList = await Bank().fetchBankNames();
 
     notifyListeners();

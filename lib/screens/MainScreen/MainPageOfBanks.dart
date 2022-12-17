@@ -1,9 +1,13 @@
 
+import 'dart:io';
+
 import 'package:bank/screens/Registration/login.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/widgets/displayBankName.dart';
+import '../../domain/AdsProvider.dart';
 import '../../domain/GetDataOfBank.dart';
 import '../../domain/RegistrationTextFieldProvider.dart';
 import '../BankPages/AddBankPage.dart';
@@ -19,6 +23,7 @@ class MainPageOfBanks extends StatefulWidget{
 }
 class _MainPageOfBanks extends State<MainPageOfBanks> {
 
+  late BannerAd myBanner;
   @override
   void initState() {
     final dataProvider = Provider.of<GetDataOfBank>(context,listen: false);
@@ -68,13 +73,22 @@ class _MainPageOfBanks extends State<MainPageOfBanks> {
 
   Widget bodyContainer(BuildContext context){
     final dataProvider = Provider.of<GetDataOfBank>(context);
+    final dataAdsProvider = Provider.of<AdsProvider>(context);
 
     return ListView.builder(
         itemCount: dataProvider.banksList.length,
         itemBuilder: (_, int position) {
-        return DisplayBankName(
-          counter: position+1,
-          name: dataProvider.banksList[position],
+        return Column(
+          children: [
+            position%2==0?Container(
+              height: 80,
+              child: AdWidget(ad: dataAdsProvider.getAd()),
+            ):Container(),
+            DisplayBankName(
+              counter: position+1,
+              name: dataProvider.banksList[position],
+            ),
+          ],
         );
       }
   );

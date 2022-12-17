@@ -1,9 +1,11 @@
 
 import 'package:bank/screens/NoteOfBank/GetNote.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/widgets/InvestmentDisplay.dart';
+import '../../domain/AdsProvider.dart';
 import '../../domain/GetDataOfBank.dart';
 import 'AddInvestment.dart';
 
@@ -65,6 +67,7 @@ class _DataOfBank extends State<DataOfBank>{
 
   Widget bodyContainer(BuildContext context){
     final dataProvider = Provider.of<GetDataOfBank>(context);
+    final dataAdsProvider = Provider.of<AdsProvider>(context);
 
     return RefreshIndicator(
         onRefresh: () => _onRefresh(context),
@@ -72,14 +75,22 @@ class _DataOfBank extends State<DataOfBank>{
             itemCount: dataProvider.investment.length,
             itemBuilder: (_, int position) {
               var data = dataProvider.investment;
-              return InvestmentDisplay(
-                  numberOfInvestment: data.values.elementAt(position)['number'].toString(),
-                  amount: data.values.elementAt(position)['amount'].toString(),
-                  dateOfEnd: data.values.elementAt(position)['date_of_end'].toString(),
-                  benefit: data.values.elementAt(position)['benefit'].toString(),
-                  dateOfBenefit: data.values.elementAt(position)['date_of_benefit'].toString(),
-                  id:data.keys.elementAt(position).toString(),
-                  name:widget.bank
+              return Column(
+                children: [
+                  position%2==0?Container(
+                    height: 80,
+                    child: AdWidget(ad: dataAdsProvider.getAd()),
+                  ):Container(),
+                  InvestmentDisplay(
+                      numberOfInvestment: data.values.elementAt(position)['number'].toString(),
+                      amount: data.values.elementAt(position)['amount'].toString(),
+                      dateOfEnd: data.values.elementAt(position)['date_of_end'].toString(),
+                      benefit: data.values.elementAt(position)['benefit'].toString(),
+                      dateOfBenefit: data.values.elementAt(position)['date_of_benefit'].toString(),
+                      id:data.keys.elementAt(position).toString(),
+                      name:widget.bank
+                  ),
+                ],
               );
             }
         ));

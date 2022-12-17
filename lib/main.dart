@@ -1,7 +1,8 @@
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
+import 'domain/AdsProvider.dart';
 import 'domain/BankDataTextFieldProvider.dart';
 import 'domain/GetDataOfBank.dart';
 import 'domain/NoteDateProvider.dart';
@@ -11,6 +12,11 @@ import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  RequestConfiguration config = RequestConfiguration(
+    testDeviceIds: <String>['C9A7F9E228F8DC93C8418E719C763B33']
+  );
+  MobileAds.instance.updateRequestConfiguration(config);
+
   try {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
@@ -50,6 +56,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => NoteDateProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => AdsProvider(),
         ),
 
       ],
