@@ -53,6 +53,7 @@ class AddBankPage extends StatelessWidget{
             },
             inputType: TextInputType.number,
           ),
+
           ButtonWidget(
             height: 50,
             color: Theme.of(context).primaryColor,
