@@ -3,7 +3,7 @@ import 'package:bank/screens/Registration/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/widgets/button.dart';
+import '../../core/widgets/button_widget.dart';
 import '../../core/widgets/textfield.dart';
 import '../../domain/RegistrationTextFieldProvider.dart';
 import '../MainScreen/MainPageOfBanks.dart';

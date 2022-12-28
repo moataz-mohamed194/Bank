@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../core/widgets/button.dart';
+import '../../core/widgets/button_widget.dart';
 import '../../core/widgets/textfield.dart';
 import '../../domain/BankDataTextFieldProvider.dart';
 import '../MainScreen/MainPageOfBanks.dart';

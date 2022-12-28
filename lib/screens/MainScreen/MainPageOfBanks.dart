@@ -1,5 +1,4 @@
 
-import 'dart:io';
 
 import 'package:bank/screens/Registration/login.dart';
 import 'package:flutter/material.dart';
@@ -60,16 +59,16 @@ class _MainPageOfBanks extends State<MainPageOfBanks> {
     );
   }
 
-  FloatingActionButton floatingButton(BuildContext context){
-    return FloatingActionButton(
-      onPressed: () async {
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return const AddBankPage();
-        }));
-      },
-      child: const Icon(Icons.add),
-    );
-  }
+    FloatingActionButton floatingButton(BuildContext context){
+      return FloatingActionButton(
+        onPressed: () async {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return const AddBankPage();
+          }));
+        },
+        child: const Icon(Icons.add),
+      );
+    }
 
   Widget bodyContainer(BuildContext context){
     final dataProvider = Provider.of<GetDataOfBank>(context);
