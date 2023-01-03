@@ -61,7 +61,6 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => AdsProvider(),
         ),
-
       ],
       child: MaterialApp(
             title: 'Banking',
