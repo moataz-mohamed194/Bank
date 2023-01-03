@@ -8,6 +8,7 @@ class RegistrationTextFieldProvider extends ChangeNotifier {
   ValidationItem emailData = ValidationItem(null, null);
   ValidationItem passwordData = ValidationItem(null, null);
   ValidationItem repeatPasswordData = ValidationItem(null, null);
+
   ValidationItem get email => emailData;
   ValidationItem get password => passwordData;
   ValidationItem get repeatPassword => repeatPasswordData;
