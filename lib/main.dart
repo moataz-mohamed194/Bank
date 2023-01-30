@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'domain/AdsProvider.dart';
@@ -62,7 +63,7 @@ class MyApp extends StatelessWidget {
           create: (context) => AdsProvider(),
         ),
       ],
-      child: MaterialApp(
+      child: GetMaterialApp(
             title: 'Banking',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(

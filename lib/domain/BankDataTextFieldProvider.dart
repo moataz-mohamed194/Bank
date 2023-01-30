@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import '../core/error/error_text.dart';
+import '../core/network/check_network.dart';
 import '../data/Bank.dart';
 import '../data/model/ValidationItem.dart';
 
@@ -30,7 +32,11 @@ class BankDataTextFieldProvider extends ChangeNotifier{
 
   Future<bool> get nameOfBankIsValid async {
     if (nameOfBankData.value != null ) {
-      await Bank().addNewBank(nameOfBankData.value.toString(), savingOfBankData.value.toString());
+      CheckNetwork().connection();
+      String? result = await Bank().addNewBank(nameOfBankData.value.toString(), savingOfBankData.value.toString());
+      if(result!=null || result!='null'){
+        MessageSnackBar(result.toString());
+      }
       return true;
     } else {
       if (nameOfBankData.value == null){
@@ -121,8 +127,11 @@ class BankDataTextFieldProvider extends ChangeNotifier{
         timeOfBenefitData.value != null&&
         dateOfEndTheInvestmentData.value != null&&
         amountOfInvestmentData.value !=null) {
-      await Bank().addInvestmentBank(name,numberOfInvestmentData.value,amountOfInvestmentData.value,benefitOfInvestmentData.value,timeOfBenefitData.value,dateOfEndTheInvestmentData.value);
-
+      CheckNetwork().connection();
+      String? result = await Bank().addInvestmentBank(name,numberOfInvestmentData.value,amountOfInvestmentData.value,benefitOfInvestmentData.value,timeOfBenefitData.value,dateOfEndTheInvestmentData.value);
+      if (result!=null){
+        MessageSnackBar(result.toString());
+      }
       return true;
     } else {
       if (numberOfInvestmentData.value == null){
@@ -145,13 +154,14 @@ class BankDataTextFieldProvider extends ChangeNotifier{
     }
   }
   Future<bool> editInvestment(String? bank, String? id)async{
-
+    CheckNetwork().connection();
     if( await Bank().editInvestmentOfBank(bank,id,
         numberOfInvestmentData.value,amountOfInvestmentData.value,
         benefitOfInvestmentData.value,timeOfBenefitData.value,
         dateOfEndTheInvestmentData.value)== true){
       return true;
     }else {
+      MessageSnackBar(failedTheAction.toString());
       return true;
     }
   }

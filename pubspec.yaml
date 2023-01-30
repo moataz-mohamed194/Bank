@@ -44,7 +44,8 @@ dependencies:
   firebase_database: ^10.0.7
   flutter_screen_lock: ^9.0.0+1
   google_mobile_ads: ^2.3.0
-
+  get: ^4.6.5
+  internet_connection_checker: ^1.0.0+1
 
 dev_dependencies:
   flutter_test:
