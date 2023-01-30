@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import '../core/error/error_text.dart';
+import '../core/network/check_network.dart';
 import '../data/Registration.dart';
 import '../data/model/ValidationItem.dart';
 
@@ -8,6 +10,7 @@ class RegistrationTextFieldProvider extends ChangeNotifier {
   ValidationItem emailData = ValidationItem(null, null);
   ValidationItem passwordData = ValidationItem(null, null);
   ValidationItem repeatPasswordData = ValidationItem(null, null);
+
   ValidationItem get email => emailData;
   ValidationItem get password => passwordData;
   ValidationItem get repeatPassword => repeatPasswordData;
@@ -83,10 +86,12 @@ class RegistrationTextFieldProvider extends ChangeNotifier {
 
   Future<bool> get signInIsValid async {
     if (emailData.value != null && passwordData.value != null) {
+      CheckNetwork().connection();
       String? result = await Registration().signInAccount(emailData.value.toString(), passwordData.value.toString());
       if (result == null){
         return true;
       }else{
+        MessageSnackBar(result.toString());
         return false;
       }
     }
@@ -115,20 +120,30 @@ class RegistrationTextFieldProvider extends ChangeNotifier {
   }
 
   Future<bool> get signUpIsValid async {
+    CheckNetwork().connection();
+
     if (emailData.value != null && passwordData.value != null && repeatPasswordData.value != null) {
-      await Registration().createAccount(emailData.value.toString(), passwordData.value.toString());
-      return true;
+      String? result = await Registration().createAccount(emailData.value.toString(), passwordData.value.toString());
+      if (result == null){
+        return true;
+      }else{
+        MessageSnackBar(result.toString());
+        return false;
+      }
     }
     else {
+      MessageSnackBar(failedTheAction.toString());
       return false;
     }
   }
 
   Future<bool> get checkIfLogOut async{
+    CheckNetwork().connection();
+
     if (await Registration().logOutAccount()==true){
       return true;
-    }
-    else{
+    }else{
+      MessageSnackBar(failedTheAction.toString());
       return false;
     }
   }
